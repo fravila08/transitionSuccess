@@ -10,7 +10,8 @@ function SignIn() {
       password:password
     })
     .then((response)=>{
-      window.location.href="/"
+      console.log(response)
+      window.location.href="/decisionMap"
     })
   }
   return (

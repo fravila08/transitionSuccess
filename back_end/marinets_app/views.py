@@ -1,3 +1,4 @@
+from multiprocessing.sharedctypes import Value
 from django.http import HttpResponse, JsonResponse
 from rest_framework.decorators import api_view
 from .models import *
@@ -52,3 +53,51 @@ def curr_user(request):
         return HttpResponse(data)
     else:
         return JsonResponse({'user':None})
+
+
+@api_view(['PUT', "GET"])
+def handle_change(request):
+    user=AppUser.objects.get(id= request.user.id)
+    if request.method == "PUT":
+        try:
+            to_change=request.data['toChange']
+            value=request.data['value']
+            if to_change== "married":
+                user.married= value
+            if to_change == "gi_bill":
+                user.gi_bill= value
+            if to_change == "va_homeloan":
+                user.va_homeloan = value
+            if to_change== "va_health_claims":
+                user.va_health_claims = value
+            if to_change == "skillsbrigde":
+                user.skillsbridge= value
+            if to_change == "trs":
+                user.trs = value
+            user.save()
+            return Response({"Change successful":[to_change, value]})
+        except Exception as e:
+            print(e)
+            return Response({"Change unsuccessful":"this happened inside put method"})
+    if request.method=="GET":
+        try:
+            answerKey=[]
+            if True== user.married:
+                answerKey.append(1)
+            if True == user.gi_bill:
+                answerKey.append(2)
+            if True == user.va_homeloan:
+                answerKey.append(3)
+            if True== user.va_health_claims:
+                answerKey.append(4)
+            if True == user.skillsbridge:
+                answerKey.append(6)
+            if True == user.trs:
+                answerKey.append(5)
+            return Response({"answer": answerKey})
+        except Exception as e:
+            print(e)
+            return Response({"failute":"this happened inside get method"})
+    
+    return Response({"Change successful":[to_change, value]})
+    

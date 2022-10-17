@@ -12,6 +12,9 @@ const NavBar = () => {
                 <Nav.Link href='#'>
                     <button>My Road Map</button>
                 </Nav.Link>
+                <Nav.Link href="#/decisionMap">
+                    <button>Decision Map</button>
+                </Nav.Link>
                 <Nav.Link href='#'>
                     <button>Blogs</button>
                 </Nav.Link>

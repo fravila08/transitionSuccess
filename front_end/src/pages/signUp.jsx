@@ -12,7 +12,7 @@ function SignUp() {
         email: email,
         password: password
       }).then((response)=>{
-        window.location.href="#/signIn"
+        window.location.href="/signIn"
       })
     }
     catch (err) {
