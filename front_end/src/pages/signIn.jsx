@@ -3,7 +3,15 @@ import {motion} from "framer-motion"
 
 function SignIn() {
   function signIn(event) {
-    
+    let email=document.getElementById("emailSignIn").value;
+    let password=document.getElementById("passwordSignIn").value;
+    axios.post("sign_in", {
+      email:email,
+      password:password
+    })
+    .then((response)=>{
+      window.location.href="/"
+    })
   }
   return (
       <motion.div

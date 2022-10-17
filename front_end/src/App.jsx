@@ -36,6 +36,7 @@ function App() {
   
   return (
     <div className="App">
+      {user && <h1>{user.name}</h1>}
       <div className='navHolder'>
         {user ? <NavBar /> : <button><a href='#/signUp'>Sign Up</a></button>}
         <Router>
